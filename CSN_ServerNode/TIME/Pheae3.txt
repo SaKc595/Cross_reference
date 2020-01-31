@@ -1,0 +1,23 @@
+
+ 1 turn : Phase3: 2.9987335205078125 min
+ 1 turn : Phase3: 9.036613941192627 min
+ 2 turn : Phase3: 3.01170015335083 min
+ 2 turn : Phase3: 9.04272985458374 min
+ 3 turn : Phase3: 3.026536226272583 min
+ 3 turn : Phase3: 9.036076307296753 min
+ 4 turn : Phase3: 3.0105247497558594 min
+ 4 turn : Phase3: 9.027490854263306 min
+ 5 turn : Phase3: 3.014657497406006 min
+ 5 turn : Phase3: 9.032589673995972 min
+ 6 turn : Phase3: 2.998904228210449 min
+ 6 turn : Phase3: 9.025913000106812 min
+ 7 turn : Phase3: 27.05668020248413 min
+ 7 turn : Phase3: 2.982269525527954 min
+ 7 turn : Phase3: 8.998929023742676 min
+ 8 turn : Phase3: 3.012324571609497 min
+ 9 turn : Phase3: 3.0354273319244385 min
+ Turn 0 : Phase3: 0.00538945198059082 min
+ Turn 1 : Phase3: 3.0257418155670166 min
+ Turn 2 : Phase3: 3.0357108116149902 min
+ Turn 0 : Phase3: 0.016366958618164062 min
+ Turn 0 : Phase3: 3.0171918869018555 min

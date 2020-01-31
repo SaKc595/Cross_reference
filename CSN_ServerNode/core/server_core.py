@@ -115,6 +115,7 @@ class ServerCore(object):
 
 			result_tp = self.tp.get_stored_transactions()
 			cross_reference = self.crm.get_reference_pool()
+			print("/////////////////////////////////////",cross_reference)
 			print("check_cross_reference pool")
 
 			if result_tp == []:
@@ -129,6 +130,13 @@ class ServerCore(object):
 				self.tp.clear_my_transactions(index)
 				indexx = len(cross_reference)
 				self.crm.clear_my_reference(indexx)
+				tp2 = self.crm.time_stop()
+				if tp2:
+					print("Phase2_time:",tp2)
+					time = str( "\n Turn" + str(self.crm.inc)  + " : Phase2: " + str(tp2) + " min")
+					print(time)
+					with open( 'TIME/Pheae2.txt' , mode ='a') as f:
+						f.write(time)
 
 
 			new_tp = self.bm.remove_useless_transaction(result_tp)
@@ -145,18 +153,31 @@ class ServerCore(object):
 				self.tp.clear_my_transactions(index)
 				indexx = len(cross_reference)
 				self.crm.clear_my_reference(indexx)
-		print('Current Blockchain is ... ', self.bm.chain) # + 省略中")
+				tp2 = self.crm.time_stop()
+				if tp2:
+					print("Phase2_time:",tp2)
+					time = str( "\n Turn" + str(self.crm.inc)  + " : Phase2: " + str(tp2) + " min")
+					print(time)
+					with open( 'TIME/Pheae2.txt' , mode ='a') as f:
+						f.write(time)
+					print('Current Blockchain is ... ', self.bm.chain) # + 省略中")
+					with open("Current_Blockchain.txt", mode="w") as f:
+						f.write(str(self.bm.chain))
+		
 			
 
 
+		"""
 		if len(self.bm.chain) >= 10:
 			main_level.add_db(ldb_p=LDB_P, param_p=PARAM_P, zip_p=ZIP_P, vals=self.bm.chain[:5])
 			self.bm.chain = self.bm.chain[5:]
 			print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
 			print("保存しました")
 			print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+		"""
 
 		print('Current prev_block_hash is ... ', self.prev_block_hash)
+		print('Current prev_crossref_hash is ... ', self.crm.get_previous_cross_ref())
 		self.flag_stop_block_build = False
 		self.is_bb_running = False
 		self.bb_timer = threading.Timer(CHECK_INTERVAL, self.__generate_block_with_tp)

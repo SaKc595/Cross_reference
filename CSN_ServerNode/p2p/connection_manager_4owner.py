@@ -174,6 +174,8 @@ class ConnectionManager4Owner:
 		result, reason, cmd, peer_port, payload = self.mm.parse(data_sum)
 		print("result, reason, cmd, peer_port, payload")
 
+		# print("========================()()()()()()()()=====",peer_port) ping遅延で使用
+
 		status = (result, reason)
 
 		if status == ('error', ERR_PROTOCOL_UNMATCH):
@@ -313,4 +315,14 @@ class ConnectionManager4Owner:
 		s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		s.connect(('8.8.8.8', 80))
 		return s.getsockname()[0]
+
+	def ping_delay(keyport):
+		delay = {
+			50080 : 50, # 番ポート : 遅延時間ping
+			50070 : 40,
+			50060 : 30,
+			50050 : 20,
+		}
+		sleep = delay.get(keyport)
+		return sleep
 

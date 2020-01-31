@@ -21,6 +21,12 @@ class Block:
 		self.previous_block = previous_block_hash
 		self.cross_reference = cross_reference
 
+		if self.cross_reference != []:
+			print("=============================== get_cross_reference_pool ===============================")		
+		else:
+			print("=============================== cross_reference_pool_empty ===============================")
+
+
 		current = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 		print(current)
 
@@ -37,25 +43,16 @@ class Block:
 		d = {
 			'timestamp' : self.timestamp,
 			'transactions' : [json.dumps(self.transactions[i], sort_keys=True, ensure_ascii=False) for i in range(len(self.transactions))],
-			'cross-ref' : json.dumps(self.cross_reference, sort_keys = True, ensure_ascii = False),
+			'cross-ref' : self.cross_reference,
 			'previous_block': self.previous_block
+			# 'previous_cross_ref' : 
 		}
-
-		#if self.cross_reference != []:
-		#	print("==========================================================",self.cross_reference)
-		#	print("============================== cross_reference_pool ==============================")
-		#	d['cross-ref'] = self.cross_reference
-
-		#else:
-		#	d['cross-ref'] = []
-		#	print("=============================== cross_reference_pool_empty ===============================")
 
 
 		if include_nonce:
 			d['nonce'] = self.nonce
 		else:
 			pass
-
 
 		return d
 

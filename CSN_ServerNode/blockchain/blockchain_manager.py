@@ -20,7 +20,7 @@ class BlockchainManager:
 
     def set_new_block(self, block):
         with self.lock:
-            print("============================= set_new_block =============================")
+            print("=============== set_new_block ===============")
             self.chain.append(block)
 
     def renew_my_blockchain(self, blockchain):
