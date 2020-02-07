@@ -110,11 +110,30 @@ class ConnectionManager4Owner:
 	# Coreノードリストに登録されている全てのノードに対して同じメッセージをブロードキャストする
 	def send_msg_to_all_owner_peer(self, msg):
 		print('send_msg_to_all_owner_peer was called!')
-		current_list = self.owner_node_set.get_list()
+		delay = {
+			50070 : 0.026,
+			50075 : 0.240,
+			50080 : 0.040,
+			50085 : 0.047,
+			50090 : 0.075
+		}
+		# 遅延の短い順にソート
+		current_list = sorted(self.owner_node_set.get_list(), key = lambda x: delay[x[1]])
+		# 自ノードを送信先リストから削除
+		current_list.remove((self.host, self.port))
+		p_wait_sec = 0
 		for peer in current_list:
-			if peer != (self.host, self.port):
-				print("message will be sent to ... ", peer)
-				self.send_msg(peer, msg)
+			print("message will be sent to ... ", peer)
+			sec = delay[peer[1]]
+			wait_sec =  sec - p_wait_sec
+			t = time.perf_counter()
+			until = time.perf_counter() + wait_sec
+			while time.perf_counter() < until:
+				pass
+			end_time = time.perf_counter() - t
+			print(end_time)
+			self.send_msg(peer, msg)
+			p_wait_sec = sec
 
 	# 終了前の処理としてソケットを閉じる
 	def connection_close(self):
